@@ -30,7 +30,7 @@ console.log(123);
         jsonRequest.site = "B1";
         jsonRequest.type_order = "0";
 
-        const result = await fetch("http://46.148.224.94/:8080/order", {method: "POST", 
+        const result = await fetch("http://46.148.224.94:8080/order", {method: "POST", 
         headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest)})
         const success = await result.json();
         alert(success.qrId);
