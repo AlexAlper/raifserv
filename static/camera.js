@@ -8,15 +8,26 @@ var encodedData = window.btoa("Hello, world");
 let fileInBase64Format = window.btoa(unescape(encodeURIComponent("C:/Users/Alex/Desktop/au/Alexl.wav")));
 console.log(fileInBase64Format);
 
+var id = getUrlVars()["id"];
+
+function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+
 getCamera()
 
 async function getCamera(){
     const jsonRequest = {}
         
-    jsonRequest.site = "B1";
+    jsonRequest.site = id;
     jsonRequest.type_order = "0";
 
-    const result = await fetch("http://46.148.224.94:8080/order", {method: "POST", 
+    const result = await fetch("http://192.168.1.66:8080/order", {method: "POST", 
     headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest)})
     const success = await result.json();
     //alert(success.payload)

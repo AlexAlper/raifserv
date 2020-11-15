@@ -22,17 +22,26 @@ const client = new Client({
 
 app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`));
 
+var people = "";
+
+
 app.post("/getcamera", async (req, res) => {
 
     console.log('lol')
-    let result = {};
+    let str = "";
+
+    console.log(people[0]);
+    for(let i = 0; i < people.length; i++){
+        str+=people[i] + " ";
+    }
+    console.log(str);
+
+    let result = {
+        site: people
+    };
     try{
             const reqJson = req.body;
            // await createUser(reqJson.todo);   
-        console.log(reqJson.site + " " + reqJson.type_order)
-  
-   result = await response.json();
-  console.log(result.qrId + " " + result.payload);
 
         result.success= true;
     }
@@ -51,18 +60,19 @@ app.post("/getcamera", async (req, res) => {
 app.post("/order", async (req, res) => {
 
     console.log('lol')
+    var mesrto = "";
     let result = {};
     try{
             const reqJson = req.body;
            // await createUser(reqJson.todo);   
         console.log(reqJson.site + " " + reqJson.type_order)
-
+        mesrto= reqJson.site;
            var j = {
                 additionalInfo: "Доп информация",
                 amount: 10,
                 createDate: "2019-07-22T09:14:38.107227+03:00",
                 currency: "RUB",
-                order: "1-22-333-1313-4325",
+                order: `1-13-${randomInteger(1,100)}-${randomInteger(1,100)}-${randomInteger(1,100)}`,
                 paymentDetails: "Назначение платежа",
                 qrType: "QRDynamic",
                 sbpMerchantId: "MA0000000279"
@@ -88,33 +98,26 @@ app.post("/order", async (req, res) => {
     finally{
         //res.setHeader("content-type", "application/json");
         res.send(JSON.stringify(result));
-        lisen(result.qrId);
+        lisen(result.qrId, mesrto);
 
     } 
 });
 
-function lisen(qrId){
+function lisen(qrId, site){
     
-    var j = {
-        additionalInfo: "Доп информация",
-        amount: 10,
-        createDate: "2019-07-22T09:14:38.107227+03:00",
-        currency: "RUB",
-        order: `1-13-${randomInteger(1,100)}-${randomInteger(1,100)}-${randomInteger(1,100)}`,
-        paymentDetails: "Назначение платежа",
-        qrType: "QRDynamic",
-        sbpMerchantId: "MA0000000279"
-        };
-        
 
-
+    
+    let time = 0;
     setTimeout(async function run() {
        a =  await discover(qrId);
        console.log(a)
-        if(a == "NTST"){
-           // setTimeout(run, 1000);
-        } else {
-            //
+        if(a == "ACWP" && time <500){
+            time++;
+            setTimeout(run, 1000);
+        } else if(time <500) { 
+            console.log(site);
+            people += site + " ";
+            console.log(site);
         }
       
     }, 1000);
