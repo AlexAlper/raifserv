@@ -1,0 +1,46 @@
+body {
+    font-family: "Century Gothic", sans-serif;
+    font-size: 25px;
+}
+
+header {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header img {
+    height: 100px;
+    width: auto;
+}
+
+n {
+    color: yellow;
+    margin: 10%;
+    text-shadow: black 0 0 5px;
+}
+
+.nn {
+    height: auto;
+    width: auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: url(kiss.jpg);
+    font-size: 40px;
+    color: antiquewhite
+}
+
+a {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    width: auto;
+    font-size: 30px;
+    background-color: black;
+    color: yellow
+}

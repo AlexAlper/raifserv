@@ -1,0 +1,47 @@
+body {
+    font-family: "Century Gothic", sans-serif;
+    font-size: 25px;
+}
+
+header {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header img {
+    height: 100px;
+    width: auto;
+}
+
+
+.основа {
+    background-color: yellow;
+    height:
+}
+
+.aa {
+    background-color: yellow;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    width: auto;
+    font-size: 30px;
+}
+
+
+
+.aaa {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    width: auto;
+    font-size: 30px;
+    background-color: black;
+    color: black
+}

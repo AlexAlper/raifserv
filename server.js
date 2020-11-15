@@ -8,6 +8,8 @@ const e = require("express");
 app.use(express.json());
 app.use("/static", express.static('./static/'));
 
+app.use(express.static(__dirname+ "/css/"));
+app.use(express.static(__dirname + '/public'));
 
 const client = new Client({
     "user": "postgres",
@@ -19,6 +21,32 @@ const client = new Client({
 
 
 app.get("/", (req, res) => res.sendFile(`${__dirname}/index.html`));
+
+app.post("/getcamera", async (req, res) => {
+
+    console.log('lol')
+    let result = {};
+    try{
+            const reqJson = req.body;
+           // await createUser(reqJson.todo);   
+        console.log(reqJson.site + " " + reqJson.type_order)
+  
+   result = await response.json();
+  console.log(result.qrId + " " + result.payload);
+
+        result.success= true;
+    }
+    catch(e){
+        console.log(e)
+        result.success=false;
+    }
+    finally{
+        //res.setHeader("content-type", "application/json");
+        res.send(JSON.stringify(result));
+
+    } 
+});
+
 
 app.post("/order", async (req, res) => {
 
@@ -72,7 +100,7 @@ function lisen(qrId){
         amount: 10,
         createDate: "2019-07-22T09:14:38.107227+03:00",
         currency: "RUB",
-        order: "1-22-333-1313-4525",
+        order: `1-13-${randomInteger(1,100)}-${randomInteger(1,100)}-${randomInteger(1,100)}`,
         paymentDetails: "Назначение платежа",
         qrType: "QRDynamic",
         sbpMerchantId: "MA0000000279"
@@ -102,6 +130,14 @@ async function  discover(qrId){
 }
 
 app.listen(8080, () => console.log("Web server is listening.. on port 8080"))
+
+
+function randomInteger(min, max) {
+    // случайное число от min до (max+1)
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+  }
+
 
 //start();
 
