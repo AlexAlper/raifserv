@@ -27,7 +27,7 @@ async function getCamera(){
     jsonRequest.site = id;
     jsonRequest.type_order = "0";
 
-    const result = await fetch("http://192.168.1.66:8080/order", {method: "POST", 
+    const result = await fetch("http://46.148.224.94:8080/order", {method: "POST", 
     headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest)})
     const success = await result.json();
     //alert(success.payload)
