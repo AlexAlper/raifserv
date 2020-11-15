@@ -9,6 +9,20 @@ let fileInBase64Format = window.btoa(unescape(encodeURIComponent("C:/Users/Alex/
 console.log(fileInBase64Format);
 
 console.log(123);
+
+var id = getUrlVars()["id"];
+
+function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+        });
+        return vars;
+    }
+
+    alert(id);
+    
+
        // il = el.querySelectorAll('li.news > comment')
    /* btnCreate.addEventListener("click", async e=> {
                     const jsonRequest = {}
@@ -30,7 +44,7 @@ console.log(123);
         jsonRequest.site = "B1";
         jsonRequest.type_order = "0";
 
-        const result = await fetch("http://46.148.224.94:8080/order", {method: "POST", 
+        const result = await fetch("http://localhost:8080/order", {method: "POST", 
         headers: {"content-type": "application/json"}, body: JSON.stringify(jsonRequest)})
         const success = await result.json();
         alert(success.qrId);
